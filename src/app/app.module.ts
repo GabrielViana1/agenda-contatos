@@ -10,6 +10,7 @@ import { appRoutingModule } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import  {  BrowserAnimationsModule  }  from  "@angular/platform-browser/animations" ; 
 import  {  NgxSpinnerModule  }  from  "ngx-spinner" ;
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import  {  NgxSpinnerModule  }  from  "ngx-spinner" ;
     FormsModule, //Importamos o módulo FormsModule, que é necessário para trabalhar com formulários de modelo.
     BrowserAnimationsModule, //Importamos o módulo BrowserAnimationsModule, que é necessário para trabalhar com animações.
     NgxSpinnerModule, //Importamos o módulo NgxSpinnerModule, que é necessário para trabalhar com o spinner.
+    HttpClientModule //Importamos o módulo HttpClientModule, que é necessário para trabalhar com requisições HTTP.
   ],
   providers: [],
   bootstrap: [AppComponent]

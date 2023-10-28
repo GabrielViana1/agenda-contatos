@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -7,6 +8,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent {
+
+  constructor(private NgxSpinnerService: NgxSpinnerService){}
+
  
   formForgotPassword = new FormGroup({
     email: new FormControl('', [
@@ -21,5 +25,6 @@ export class ForgotPasswordComponent {
 
   onSubmit(): void {
     console.log(this.formForgotPassword.value) //Imprimindo valores quando submetido o formulario
+    this.NgxSpinnerService.show()
   }
 }

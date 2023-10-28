@@ -1,6 +1,9 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+import { userService } from './../../../services/users.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatchPasswordValidators } from 'src/app/validators/match-password-validators';
+import { CriarContaRequestModel } from 'src/app/models/users/criarConta-request.model';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +12,10 @@ import { MatchPasswordValidators } from 'src/app/validators/match-password-valid
 })
 
 export class RegisterComponent {
+
+  //Esses atributos serão inicializados por injeção de dependência.
+  constructor(private userService: userService, private ngxSpinnerService: NgxSpinnerService ) { }
+
   //Vamos criar a validação do formulário de registro
   formRegister = new FormGroup({
     //Campo nome
@@ -46,6 +53,31 @@ export class RegisterComponent {
 
   //Função para enviar o form
   onSubmit(): void {
-    console.log(this.formRegister.value) //Imprimir os valores do formulario
+    this.ngxSpinnerService.show() //Mostrando o spinner
+    
+    //Vamos pegar os dados do formulario, que precisamos para enviar para api
+    const model: CriarContaRequestModel = {
+      //acessa o formulario/valor do campo nome/nome do campo e define com string
+      nome: this.formRegister.value.name as string,
+      email: this.formRegister.value.email as string,
+      senha: this.formRegister.value.password as string
+    }
+    //enviamos para api
+    this.userService.criarConta(model)
+    
+    //pegando a resposta da api
+    .subscribe({
+      //se der sucesso
+      next: (response) => {
+        console.log(response)
+      },
+      //se der erro
+      error: (e) => {
+        console.log(e.error)
+      }
+    }).add(() => {
+      this.ngxSpinnerService.hide()
+    })
+
   }
 }
