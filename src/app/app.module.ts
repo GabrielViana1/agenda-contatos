@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import  {  BrowserAnimationsModule  }  from  "@angular/platform-browser/animations" ; 
 import  {  NgxSpinnerModule  }  from  "ngx-spinner" ;
 import { HttpClientModule } from "@angular/common/http";
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from "@angular/common/http";
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

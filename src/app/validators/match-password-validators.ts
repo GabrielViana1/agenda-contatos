@@ -10,7 +10,7 @@ export class MatchPasswordValidators {
         let passwordConfirmation = abstractControl.get('passwordConfirmation')?.value
 
         //Verificando se os campos são iguais
-        if(passwordConfirmation.length > 0 && passwordConfirmation != password) {
+        if(passwordConfirmation?.length > 0 && passwordConfirmation != password) {
             //Se os campos não forme iguais vamos setar um erro
             abstractControl.get('passwordConfirmation')?.setErrors({
                 matchPassword: true 

@@ -1,5 +1,5 @@
 import { NgxSpinnerService } from 'ngx-spinner';
-import { userService } from './../../../services/users.service';
+import { UserService } from "src/app/services/user.service";
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatchPasswordValidators } from 'src/app/validators/match-password-validators';
@@ -13,8 +13,12 @@ import { CriarContaRequestModel } from 'src/app/models/users/criarConta-request.
 
 export class RegisterComponent {
 
+  //Variaveis do component
+  mensagemSucesso: string = ''
+  mensagemErro: string = ''
+
   //Esses atributos serão inicializados por injeção de dependência.
-  constructor(private userService: userService, private ngxSpinnerService: NgxSpinnerService ) { }
+  constructor(private userService: UserService, private ngxSpinnerService: NgxSpinnerService ) { }
 
   //Vamos criar a validação do formulário de registro
   formRegister = new FormGroup({
@@ -54,6 +58,9 @@ export class RegisterComponent {
   //Função para enviar o form
   onSubmit(): void {
     this.ngxSpinnerService.show() //Mostrando o spinner
+
+    this.mensagemSucesso = ''
+    this.mensagemErro = ''
     
     //Vamos pegar os dados do formulario, que precisamos para enviar para api
     const model: CriarContaRequestModel = {
@@ -63,17 +70,15 @@ export class RegisterComponent {
       senha: this.formRegister.value.password as string
     }
     //enviamos para api
-    this.userService.criarConta(model)
-    
-    //pegando a resposta da api
-    .subscribe({
+    this.userService.criarConta(model).subscribe({ //pegando a resposta da api
       //se der sucesso
       next: (response) => {
-        console.log(response)
+        this.mensagemSucesso = `Parabéns, ${response.nome}! Sua conta foi criada com sucesso.`
+        this.formRegister.reset()
       },
       //se der erro
       error: (e) => {
-        console.log(e.error)
+        this.mensagemErro = e.error.message
       }
     }).add(() => {
       this.ngxSpinnerService.hide()

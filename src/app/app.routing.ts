@@ -3,6 +3,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./components/account/login/login.component";
 import { RegisterComponent } from "./components/account/register/register.component";
 import { ForgotPasswordComponent } from "./components/account/forgot-password/forgot-password.component";
+import { DashboardComponent } from "./components/admin/dashboard/dashboard.component";
+import { AdminGuard } from "./guards/admin.guard";
 
 //Mapeamento das rotas do módulo
 
@@ -14,7 +16,10 @@ const routes: Routes = [
     
     {path: 'account/login', component: LoginComponent}, //path: 'account/login' significa que o componente LoginComponent será carregado quando a URL for /account/login.
     {path: 'account/register', component: RegisterComponent}, //path: 'account/register' significa que o componente RegisterComponent será carregado quando a URL for /account/register.
-    {path: 'account/forgot-password', component: ForgotPasswordComponent} //path: 'account/forgot-password' significa que o componente ForgotPasswordComponent será carregado quando a URL for /account/forgot-password.
+    {path: 'account/forgot-password', component: ForgotPasswordComponent}, //path: 'account/forgot-password' significa que o componente ForgotPasswordComponent será carregado quando a URL for /account/forgot-password.
+    //path: 'admin/dashboard' significa que o componente DashboardComponent será carregado quando a URL for /admin/dashboard.
+    {path: 'admin/dashboard', component: DashboardComponent, canActivate: [AdminGuard]} //Nessa rota apenas usuarios autenticados podem acessar, 
+    //por isso chamamos canActivate e passamos o admin guard que verifica se o usuario pode acessar
 ]
 
 //O decorator @NgModule é usado para definir um módulo.

@@ -13,6 +13,16 @@
                     <p>Preencha o campo para criar sua conta.</p>
                 </div>
 
+                <div *ngIf="mensagemSucesso" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Sucesso!</strong> {{mensagemSucesso}}
+                    <button type="button" class="btn-close" (click)="mensagemSucesso=''" aria-label="Close"></button>
+                  </div>
+
+                  <div *ngIf="mensagemErro" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Erro!</strong> {{mensagemErro}}
+                    <button type="button" class="btn-close" (click)="mensagemErro=''" aria-label="Close"></button>
+                  </div>
+
                 <!--O formGroup é o formGroup que criamos no componente e o formRegister é o nome que demos para ele-->
                 <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
                     
