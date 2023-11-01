@@ -12,6 +12,9 @@ import  {  BrowserAnimationsModule  }  from  "@angular/platform-browser/animatio
 import  {  NgxSpinnerModule  }  from  "ngx-spinner" ;
 import { HttpClientModule } from "@angular/common/http";
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { CreateContactComponent } from './components/admin/create-contact/create-contact.component';
+import { ListContactsComponent } from './components/admin/list-contacts/list-contacts.component';
+import { EditContactsComponent } from './components/admin/edit-contact/edit-contacts.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreateContactComponent,
+    ListContactsComponent,
+    EditContactsComponent
   ],
   imports: [
     BrowserModule,

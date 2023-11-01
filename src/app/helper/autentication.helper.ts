@@ -54,7 +54,8 @@ export class AutenticationHelper {
     }
 
     //Metodo para remover os dados do localstorage
-    signOut(): void {
+    signOut(): void | null {
         localStorage.removeItem(this.auth)
+
     } 
 } 
