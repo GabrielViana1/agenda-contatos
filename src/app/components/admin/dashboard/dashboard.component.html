@@ -1,0 +1,24 @@
+<div class="mt-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-9">
+                    <h4>Dashboard Principal</h4>
+                    <p>Seja bem-vindo ao sistema de agenda de contatos</p>
+                </div>
+                <div class="col-md-3">
+                    <label>Tipo do gráfico:</label>
+                    <!--Quando você selecionar um tipo ele pega o tipo e salva na variavel com a func NGMODEL e depois atualiza a page com NGONINIT-->
+                    <select class="form-select" [(ngModel)]="tipo" (change)="ngOnInit()">
+                        <option value="bar">Gráfico de barras</option>
+                        <option value="column">Gráfico de colunas</option>
+                        <option value="line">Gráfico de linhas</option>
+                        <option value="pie">Gráfico de pizza</option>
+                        <option value="area">Gráfico de área</option>       
+                    </select>
+                </div>
+            </div>
+            <div [chart]="grafico"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<!-- NavBar -->
+<app-navbar></app-navbar>
+
+<!--Content-->
+<div class="container-fluid">
+  <!-- Router outlet serve para carregar os componentes de acordo com a rota -->
+  <router-outlet></router-outlet>
+</div>
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "pacman" [fullScreen] = "true">
+  <p style="color: white" > Processando, por favor aguarde... </p>
+</ngx-spinner>

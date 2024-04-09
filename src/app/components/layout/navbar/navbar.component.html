@@ -1,0 +1,94 @@
+<!-- Criando a navbar -->
+<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+  <div class="container-fluid">
+
+
+    <a *ngIf="!isSignedIn" class="navbar-brand text-white" 
+      [routerLink]="['/account/login']"> <!-- Router link vai redirecionar para a pagina de login -->
+      <strong>Agenda de contatos</strong>
+    </a>
+
+    <a *ngIf="isSignedIn" class="navbar-brand text-white" 
+      [routerLink]="['/admin/dashboard']"> <!-- Router link vai redirecionar para a pagina de login -->
+      <strong>Agenda de contatos</strong>
+    </a>
+
+    <button 
+    class="navbar-toggler" 
+    type="button" 
+    data-bs-toggle="collapse"  
+    data-bs-target="#navbarNav" 
+    aria-controls="navbarNav" 
+    aria-expanded="false" 
+    aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div *ngIf="!isSignedIn" class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" 
+              [routerLink]="['/account/login']">
+              Acessar agenda
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" 
+              [routerLink]="['/account/register']">
+              Criar conta de usuário
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" 
+              [routerLink]="['/account/forgot-password']">
+              Recuperar senha de acesso
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="isSignedIn" class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white"
+              [routerLink]="['/admin/dashboard']">
+              Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" 
+              [routerLink]="['/admin/create-contact']">
+              Cadastrar contatos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" 
+              [routerLink]="['/admin/edit-contact']">
+              Editar contato
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white"
+              [routerLink]="['/admin/list-contacts']">
+              Listar contatos
+          </a>
+        </li>
+      </ul>
+      
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" >
+              <strong>{{userName}}</strong> | {{userEmail}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link btn btn text-white" (click)="logout()" 
+              [routerLink]="['/admin/creat-contact']">
+              Sair do sistema
+          </button>
+        </li>
+      </ul>
+    
+    </div>
+  </div>
+</nav>

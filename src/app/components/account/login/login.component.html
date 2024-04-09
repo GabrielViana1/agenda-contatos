@@ -1,0 +1,90 @@
+<!--Página de login com Bootstrap-->
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <!-- offset-md-4 serve para centralizar o card, o 4 é o tamanho do card, o bootstrap divide a tela em 12 partes -->
+        <div class="card mt-4">
+            <!-- mt-3 serve para dar um espaçamento entre o card e o topo da tela, e o card é o container do conteúdo -->
+            <div class="card-body shadow-lg">
+                <!-- card-body é o corpo do card -->
+
+                <div class="text-center">
+                    <!-- text-center serve para centralizar o conteúdo -->
+                    <h2>Acessar Agenda</h2>
+                    <p>Entre com suas credencias de usuário.</p>
+                </div>
+
+                  <div *ngIf="mensagemErro" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Erro!</strong> {{mensagemErro}}
+                    <button type="button" class="btn-close" (click)="mensagemErro=''" aria-label="Close"></button>
+                  </div>
+
+                <!--O formGroup é o formGroup que criamos no componente e o formLogin é o nome que demos para ele-->
+                <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+
+                        <label>Email de acesso:</label>
+                        <!-- form-control1 é uma classe do bootstrap para estilizar o input -->
+                        <!-- formControlName é a forma de vincular o input com o formGroup -->
+                        <input type="email" class="form-control" placeholder="Digite seu email aqui."
+                            formControlName="email" />
+
+                        <!-- Vamos criar um span para exibir as mensagens de erro -->
+                        <span class="text-danger" *ngIf="form.email.invalid && form.email.touched">
+                            <!-- Vamos criar uma validação para verificar se o campo está vazio -->
+                            <span *ngIf="form.email.errors.required">
+                                <!-- ngIf é um if do angular, o form.email.errors.required é uma validação do angular -->
+                                O campo email é obrigatório.
+                            </span>
+                            <!-- Vamos criar uma validação para verificar se o email é válido -->
+                            <span *ngIf="form.email.errors?.email">
+                                O email informado não é válido.
+                            </span>
+                        </span>
+
+                    </div>
+
+                    <div class="mb-2">
+                        <label>Senha de acesso:</label>
+                        <!-- formControlName é a forma de vincular o input com o formGroup -->
+                        <input type="password" class="form-control" placeholder="Digite sua senha aqui"
+                            formControlName="password" />
+
+                        <!-- Vamos criar um span para exibir as mensagens de erro -->
+                        <span class="text-danger" *ngIf="form.password.invalid && form.password.touched">
+                            <!-- Vamos criar uma validação para verificar se o campo está vazio -->
+                            <span *ngIf="form.password.errors.required"> <!--Se esse erro for true exibe a mensagem de baixo-->
+                                <!-- ngIf é um if do angular, o form.password.errors.required é uma validação do angular -->
+                                O campo senha é obrigatório.
+                            </span>
+                            <!-- Vamos criar uma validação para verificar se o password é válido -->
+                            <span *ngIf="form.password.errors?.pattern">
+                                Por favor, insira uma senha com no mínimo:
+                                8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um símbolo (por exemplo, @, #, $, %, etc.)
+                            </span>
+                        </span>    
+
+                        <div class="text-end">
+                            <!-- Vamos criar um botão para redirecionar para a página de recuperação de senha-->
+                            <a [routerLink]="['/account/forgot-password']">
+                                Esqueci minha senha!
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mb-2 d-grid">
+                        <button type="submit" class="btn btn-primary" 
+                            [disabled]="!formLogin.valid"> <!--O botão só será habilitado se o formulário for válido-->
+                            Entrar
+                        </button>
+                    </div>
+
+                    <div class="mb-2 d-grid">
+                        <a [routerLink]="['/account/register']" class="btn btn-light">
+                            Não possui conta? <strong>Registrar agora.</strong>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
